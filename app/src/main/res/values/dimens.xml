@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <dimen name="thumbnail_height">160dp</dimen>
+    <dimen name="min_button_width">64dp</dimen>
+
+    <dimen name="icon_size">20sp</dimen>
+</resources>
