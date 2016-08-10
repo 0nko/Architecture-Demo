@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.ondrejruttkay.architecturedemo.DemoApp;
 import com.ondrejruttkay.architecturedemo.di.ActivityModule;
 import com.ondrejruttkay.architecturedemo.fragment.StateFragment;
+import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.navigation.INavigator;
 import com.ondrejruttkay.architecturedemo.viewmodel.BaseViewModel;
 import com.squareup.otto.Bus;
@@ -30,6 +31,9 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     @Inject
     protected T viewModel;
 
+    @Inject
+    protected ILocalization localization;
+
     private boolean isCreated;
 
     @Override
@@ -38,6 +42,8 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
         initStateFragment();
         injectActivity();
+
+        localization.updateLocale();
     }
 
     @Override

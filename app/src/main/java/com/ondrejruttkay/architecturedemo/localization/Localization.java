@@ -51,17 +51,21 @@ public class Localization implements ILocalization {
 
     @Override
     public void toggleLanguage() {
+        isDefault = !isDefault;
+        updateLocale();
+        bus.post(new LanguageChanged());
+    }
+
+    @Override
+    public void updateLocale() {
         if (isDefault) {
-            Configuration conf = context.getResources().getConfiguration();
-            conf.setLocale(Locale.forLanguageTag("es"));
-            context.getResources().updateConfiguration(conf, null);
-        } else {
             Configuration conf = context.getResources().getConfiguration();
             conf.setLocale(Locale.getDefault());
             context.getResources().updateConfiguration(conf, null);
+        } else {
+            Configuration conf = context.getResources().getConfiguration();
+            conf.setLocale(Locale.forLanguageTag("es"));
+            context.getResources().updateConfiguration(conf, null);
         }
-
-        isDefault = !isDefault;
-        bus.post(new LanguageChanged());
     }
 }

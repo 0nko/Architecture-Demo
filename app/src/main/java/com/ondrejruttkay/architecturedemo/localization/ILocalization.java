@@ -9,5 +9,7 @@ public interface ILocalization {
     String getEditButtonLabel();
     String getLoadButtonLabel();
     String getDeleteButtonLabel();
+
+    void updateLocale();
     void toggleLanguage();
 }
