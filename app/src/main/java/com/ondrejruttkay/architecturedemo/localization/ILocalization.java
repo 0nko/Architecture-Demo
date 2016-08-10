@@ -5,11 +5,15 @@ package com.ondrejruttkay.architecturedemo.localization;
  */
 
 public interface ILocalization {
-    String getViewButtonLabel();
     String getEditButtonLabel();
     String getLoadButtonLabel();
     String getDeleteButtonLabel();
+    String getSaveButtonLabel();
+    String getTitleHint();
+    String getSummaryHint();
+    String getLanguageTitle();
 
     void updateLocale();
     void toggleLanguage();
+
 }

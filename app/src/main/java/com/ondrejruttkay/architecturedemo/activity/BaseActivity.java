@@ -77,6 +77,12 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         return super.onOptionsItemSelected(item);
     }
 
+    protected void setupToolbarWithBackButton() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     protected abstract void injectStateFragment();
 
     protected abstract void injectActivity();

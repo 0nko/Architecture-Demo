@@ -5,4 +5,6 @@ package com.ondrejruttkay.architecturedemo;
  */
 public class DemoConfig {
 
+    public static final int EDIT_POST_REQUEST = 1001;
+    public static final String EDIT_POST_KEY = "EDIT_POST_KEY";
 }

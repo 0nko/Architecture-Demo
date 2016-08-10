@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_view">Mira</string>
     <string name="action_dismiss">Descarta</string>
     <string name="action_edit">Edita</string>
     <string name="action_delete">Borra</string>
     <string name="action_load">No hay artículos, carga algunos…</string>
+    <string name="action_save">Salva</string>
+    <string name="title_hint">Título</string>
+    <string name="summary_hint">Resumen</string>
+    <string name="language_title">Español</string>
 </resources>

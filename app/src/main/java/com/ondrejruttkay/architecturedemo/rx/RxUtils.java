@@ -11,8 +11,8 @@ public class RxUtils {
 
     public static <T> Observable.Transformer<T, T> applySchedulers() {
         return observable -> observable
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public static <T> Observable.Transformer<T, T> applyDelay() {

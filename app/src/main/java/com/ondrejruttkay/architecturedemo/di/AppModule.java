@@ -6,8 +6,8 @@ import android.preference.PreferenceManager;
 
 import com.ondrejruttkay.architecturedemo.DemoApp;
 import com.ondrejruttkay.architecturedemo.localization.ILocalization;
-import com.ondrejruttkay.architecturedemo.network.IRestApiClient;
-import com.ondrejruttkay.architecturedemo.network.RestApiClient;
+import com.ondrejruttkay.architecturedemo.repository.IRepository;
+import com.ondrejruttkay.architecturedemo.repository.Repository;
 import com.ondrejruttkay.architecturedemo.util.IUtilities;
 import com.ondrejruttkay.architecturedemo.localization.Localization;
 import com.ondrejruttkay.architecturedemo.util.Utilities;
@@ -32,8 +32,8 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public IRestApiClient provideRestClient() {
-        return new RestApiClient();
+    public IRepository provideRestClient(Bus bus) {
+        return new Repository(bus);
     }
 
     @Singleton

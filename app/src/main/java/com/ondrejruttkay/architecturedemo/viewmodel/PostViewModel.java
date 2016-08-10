@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.ondrejruttkay.architecturedemo.databinding.Command;
 import com.ondrejruttkay.architecturedemo.event.LanguageChanged;
+import com.ondrejruttkay.architecturedemo.event.PostChanged;
 import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.model.Post;
 import com.ondrejruttkay.architecturedemo.navigation.INavigator;
@@ -33,6 +34,7 @@ public class PostViewModel extends BaseViewModel {
         super(bus);
 
         this.post = post;
+
         this.navigator = navigator;
         this.localization = localization;
         this.postListViewModel = postListViewModel;
@@ -47,6 +49,7 @@ public class PostViewModel extends BaseViewModel {
     }
 
     private void editPost() {
+        navigator.editPost(post);
     }
 
     private void deletePost() {
@@ -96,6 +99,18 @@ public class PostViewModel extends BaseViewModel {
 
     @Subscribe
     public void onLanguageChanged(LanguageChanged event) {
-        notifyChange();
+        refresh();
+    }
+
+    @Subscribe
+    public void onPostChanged(PostChanged event) {
+        if (event.getPostId() == post.getId()) {
+            refresh();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

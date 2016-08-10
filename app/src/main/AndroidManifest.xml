@@ -20,6 +20,10 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name=".activity.EditPostActivity"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

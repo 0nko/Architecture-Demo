@@ -30,11 +30,6 @@ public class Localization implements ILocalization {
     }
 
     @Override
-    public String getViewButtonLabel() {
-        return context.getString(R.string.action_view);
-    }
-
-    @Override
     public String getEditButtonLabel() {
         return context.getString(R.string.action_edit);
     }
@@ -47,6 +42,26 @@ public class Localization implements ILocalization {
     @Override
     public String getDeleteButtonLabel() {
         return context.getString(R.string.action_delete);
+    }
+
+    @Override
+    public String getSaveButtonLabel() {
+        return context.getString(R.string.action_save);
+    }
+
+    @Override
+    public String getTitleHint() {
+        return context.getString(R.string.title_hint);
+    }
+
+    @Override
+    public String getSummaryHint() {
+        return context.getString(R.string.summary_hint);
+    }
+
+    @Override
+    public String getLanguageTitle() {
+        return context.getString(R.string.language_title);
     }
 
     @Override

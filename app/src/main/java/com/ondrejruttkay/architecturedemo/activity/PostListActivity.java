@@ -1,5 +1,6 @@
 package com.ondrejruttkay.architecturedemo.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.ondrejruttkay.architecturedemo.DemoConfig;
 import com.ondrejruttkay.architecturedemo.R;
 import com.ondrejruttkay.architecturedemo.databinding.ActivityPostsBinding;
 import com.ondrejruttkay.architecturedemo.viewmodel.PostListViewModel;

@@ -6,8 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.ondrejruttkay.architecturedemo.DemoConfig;
 import com.ondrejruttkay.architecturedemo.activity.BaseActivity;
+import com.ondrejruttkay.architecturedemo.activity.EditPostActivity;
 import com.ondrejruttkay.architecturedemo.fragment.StateFragment;
+import com.ondrejruttkay.architecturedemo.model.Post;
 
 /**
  * Created by Ondrej Ruttkay on 08/09/2016.
@@ -20,6 +23,7 @@ public class Navigator implements INavigator {
         this.stateFragment = stateFragment;
     }
 
+    @Override
     public void showMessage(String message) {
         Toast.makeText(stateFragment.getActivity(), message, Toast.LENGTH_SHORT).show();
     }
@@ -33,8 +37,10 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void showMainScreen() {
-//        showActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    public void editPost(Post post) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(DemoConfig.EDIT_POST_KEY, post.getId());
+        showActivity(EditPostActivity.class, bundle);
     }
 
     @Override
@@ -49,30 +55,12 @@ public class Navigator implements INavigator {
         }
     }
 
-    private void startActivityForResult(Class<?> activity, int requestCode) {
-        showActivity(activity, null, null, requestCode);
-    }
-
-    private void startActivityForResult(Intent intent, int requestCode) {
-        if (isReady()) {
-            stateFragment.getActivity().startActivityForResult(intent, requestCode);
-        }
-    }
-
-    private void showActivity(Class<?> activity) {
-        showActivity(activity, 0, null, -1);
-    }
-
-    private void showActivity(Class<?> activity, int flags) {
-        showActivity(activity, flags, null, -1);
-    }
-
     private void showActivity(Class<?> activity, Bundle bundle) {
-        showActivity(activity, null, bundle, -1);
+        showActivity(activity, bundle, -1);
     }
 
-    private void showActivity(Class<?> activity, Integer flags, Bundle bundle) {
-        showActivity(activity, flags, bundle, -1);
+    private void showActivity(Class<?> activity, Bundle bundle, int requestCode) {
+        showActivity(activity, null, bundle, requestCode);
     }
 
     private void showActivity(Class<?> activity, Integer flags, Bundle bundle, int requestCode) {

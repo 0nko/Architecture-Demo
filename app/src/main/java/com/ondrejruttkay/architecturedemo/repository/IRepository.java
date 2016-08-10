@@ -1,4 +1,4 @@
-package com.ondrejruttkay.architecturedemo.network;
+package com.ondrejruttkay.architecturedemo.repository;
 
 import com.ondrejruttkay.architecturedemo.model.Post;
 
@@ -9,7 +9,8 @@ import rx.Observable;
 /**
  * Requests posts from some API
  */
-public interface IRestApiClient {
+public interface IRepository {
 
     Observable<List<Post>> requestPosts();
+    Post getPost(int id);
 }

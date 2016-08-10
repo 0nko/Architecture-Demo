@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">Architecture Demo</string>
     <string name="img_featured_image">Featured Image</string>
-    <string name="action_view">View</string>
     <string name="action_dismiss">Dismiss</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="action_load">No posts. Load some…</string>
+    <string name="action_save">Save</string>
     <string name="change_language">Change language</string>
+    <string name="title_hint">Title</string>
+    <string name="summary_hint">Summary</string>
+    <string name="language_title">English</string>
 
     <string name="icon_heart">&#xf004;</string>
     <string name="icon_message">&#xf27a;</string>
