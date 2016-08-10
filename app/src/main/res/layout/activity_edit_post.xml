@@ -19,7 +19,7 @@
             android:id="@+id/edit_post_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.ondrejruttkay.architecturedemo.fragment.EditPostFragment"
+            android:name="com.ondrejruttkay.architecturedemo.view.fragment.EditPostFragment"
             tools:layout="@layout/fragment_edit_post" />
 
     </LinearLayout>

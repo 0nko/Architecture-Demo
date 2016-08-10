@@ -4,14 +4,14 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 
-import com.ondrejruttkay.architecturedemo.databinding.Command;
-import com.ondrejruttkay.architecturedemo.di.PerActivity;
-import com.ondrejruttkay.architecturedemo.event.LanguageChanged;
-import com.ondrejruttkay.architecturedemo.localization.ILocalization;
+import com.ondrejruttkay.architecturedemo.common.databinding.Command;
+import com.ondrejruttkay.architecturedemo.common.di.PerActivity;
+import com.ondrejruttkay.architecturedemo.common.event.LanguageChanged;
+import com.ondrejruttkay.architecturedemo.common.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.model.Post;
-import com.ondrejruttkay.architecturedemo.navigation.INavigator;
-import com.ondrejruttkay.architecturedemo.repository.IRepository;
-import com.ondrejruttkay.architecturedemo.util.RxUtils;
+import com.ondrejruttkay.architecturedemo.common.navigation.INavigator;
+import com.ondrejruttkay.architecturedemo.common.repository.IRepository;
+import com.ondrejruttkay.architecturedemo.common.util.RxUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

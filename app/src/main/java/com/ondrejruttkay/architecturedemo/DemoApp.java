@@ -3,14 +3,12 @@ package com.ondrejruttkay.architecturedemo;
 import android.app.Application;
 import android.content.Context;
 
-import com.ondrejruttkay.architecturedemo.di.AppComponent;
-import com.ondrejruttkay.architecturedemo.di.AppModule;
-import com.ondrejruttkay.architecturedemo.di.DaggerAppComponent;
-import com.ondrejruttkay.architecturedemo.util.FontCache;
+import com.ondrejruttkay.architecturedemo.common.di.AppComponent;
+import com.ondrejruttkay.architecturedemo.common.di.AppModule;
+import com.ondrejruttkay.architecturedemo.common.di.DaggerAppComponent;
+import com.ondrejruttkay.architecturedemo.common.util.FontCache;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 

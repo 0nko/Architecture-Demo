@@ -2,7 +2,7 @@ package com.ondrejruttkay.architecturedemo.model;
 
 import android.support.annotation.Nullable;
 
-import com.ondrejruttkay.architecturedemo.event.PostChanged;
+import com.ondrejruttkay.architecturedemo.common.event.PostChanged;
 import com.squareup.otto.Bus;
 
 /**
