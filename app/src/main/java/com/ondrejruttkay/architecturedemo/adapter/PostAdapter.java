@@ -44,7 +44,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BindingHolder>
         return posts.size();
     }
 
-    /** Adapter view holder implementation */
     static class BindingHolder extends RecyclerView.ViewHolder {
 
         private ItemPostBinding binding;

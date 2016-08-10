@@ -59,17 +59,8 @@ public class BindingHelpers {
         textView.setTypeface(FontCache.getInstance().get(fontName));
     }
 
-    @BindingAdapter({"action", "actionId"})
-    public static void bindEditTextAction(EditText view, final Command command, int actionId) {
-        RxTextView.editorActions(view).subscribe(id -> {
-            if (id == actionId || id == EditorInfo.IME_ACTION_UNSPECIFIED) {
-                command.execute();
-            }
-        });
-    }
-
     @BindingAdapter("bindPosts")
-    public static void bindCarsRecyclerView(RecyclerView view, ObservableList<PostViewModel> posts) {
+    public static void bindPosts(RecyclerView view, ObservableList<PostViewModel> posts) {
         PostAdapter adapter = new PostAdapter(posts);
         view.setTag(posts);
         view.setAdapter(adapter);
@@ -80,10 +71,5 @@ public class BindingHelpers {
     @BindingConversion
     public static int convertBoolToVisibility(boolean visible) {
         return visible ? View.VISIBLE : View.GONE;
-    }
-
-    @BindingConversion
-    public static Drawable convertColorStringToDrawable(String color) {
-        return new ColorDrawable(Color.parseColor(color));
     }
 }

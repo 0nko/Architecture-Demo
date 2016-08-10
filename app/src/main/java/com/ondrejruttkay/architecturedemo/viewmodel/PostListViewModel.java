@@ -11,9 +11,11 @@ import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.model.Post;
 import com.ondrejruttkay.architecturedemo.navigation.INavigator;
 import com.ondrejruttkay.architecturedemo.repository.IRepository;
-import com.ondrejruttkay.architecturedemo.rx.RxUtils;
+import com.ondrejruttkay.architecturedemo.util.RxUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,7 +25,7 @@ import javax.inject.Inject;
 @PerActivity
 public class PostListViewModel extends BaseViewModel {
 
-    private IRepository apiClient;
+    private IRepository repository;
     private INavigator navigator;
     private ILocalization localization;
 
@@ -32,10 +34,10 @@ public class PostListViewModel extends BaseViewModel {
     private Command loadCommand;
 
     @Inject
-    public PostListViewModel(Bus bus, IRepository apiClient, INavigator navigator, ILocalization localization) {
+    public PostListViewModel(Bus bus, IRepository repository, INavigator navigator, ILocalization localization) {
         super(bus);
 
-        this.apiClient = apiClient;
+        this.repository = repository;
         this.navigator = navigator;
         this.localization = localization;
 
@@ -49,18 +51,10 @@ public class PostListViewModel extends BaseViewModel {
         isBusy.set(true);
         loadCommand.setVisible(false);
 
-        apiClient.requestPosts()
+        repository.requestPosts()
                 .compose(RxUtils.applyDelay())
                 .compose(RxUtils.applySchedulers())
-                .subscribe(newPosts -> {
-                    posts.clear();
-                    for (Post post : newPosts) {
-                        PostViewModel newPost = new PostViewModel(getBus(), post, navigator, localization, this);
-                        newPost.onCreate();
-                        posts.add(newPost);
-                    }
-                    isBusy.set(false);
-                }, throwable -> isBusy.set(false));
+                .subscribe(this::onPostsLoaded, throwable -> isBusy.set(false));
     }
 
     public ObservableList<PostViewModel> getPosts() {
@@ -88,6 +82,16 @@ public class PostListViewModel extends BaseViewModel {
         post.onDestroy();
 
         loadCommand.setVisible(posts.size() == 0);
+    }
+
+    private void onPostsLoaded(List<Post> newPosts) {
+        posts.clear();
+        for (Post post : newPosts) {
+            PostViewModel newPost = new PostViewModel(getBus(), post, navigator, localization, this);
+            newPost.onCreate();
+            posts.add(newPost);
+        }
+        isBusy.set(false);
     }
 
     @Subscribe

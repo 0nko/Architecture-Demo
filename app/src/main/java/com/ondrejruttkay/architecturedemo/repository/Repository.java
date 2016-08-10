@@ -25,6 +25,7 @@ public class Repository implements IRepository {
         posts = new HashMap<>();
         int id = 0;
 
+        // Fake posts
         posts.put(id, new Post(bus, id++, "Data Binding Rulez", "Having the views and business logic (BL) mixed up in 5000 " +
                 "line-long activities is nice and all but it doesn’t have to be that way. One of the key " +
                 "advantages of using data binding is a chance to nicely separate the presentation layer from the BL.",

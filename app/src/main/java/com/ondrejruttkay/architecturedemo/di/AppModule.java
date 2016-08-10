@@ -8,9 +8,7 @@ import com.ondrejruttkay.architecturedemo.DemoApp;
 import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.repository.IRepository;
 import com.ondrejruttkay.architecturedemo.repository.Repository;
-import com.ondrejruttkay.architecturedemo.util.IUtilities;
 import com.ondrejruttkay.architecturedemo.localization.Localization;
-import com.ondrejruttkay.architecturedemo.util.Utilities;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -32,7 +30,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public IRepository provideRestClient(Bus bus) {
+    public IRepository provideRepository(Bus bus) {
         return new Repository(bus);
     }
 
@@ -50,19 +48,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public SharedPreferences provideSharedPreferences(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    @Singleton
-    @Provides
     public ILocalization provideLocalization(Context context, Bus bus) {
         return new Localization(context, bus);
-    }
-
-    @Singleton
-    @Provides
-    public IUtilities provideUtils(Context context) {
-        return new Utilities(context);
     }
 }

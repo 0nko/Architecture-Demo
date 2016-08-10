@@ -1,4 +1,4 @@
-package com.ondrejruttkay.architecturedemo.rx;
+package com.ondrejruttkay.architecturedemo.util;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
