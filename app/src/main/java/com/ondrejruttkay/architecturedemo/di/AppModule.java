@@ -5,10 +5,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.ondrejruttkay.architecturedemo.DemoApp;
+import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.network.IRestApiClient;
 import com.ondrejruttkay.architecturedemo.network.RestApiClient;
 import com.ondrejruttkay.architecturedemo.util.IUtilities;
-import com.ondrejruttkay.architecturedemo.util.Localization;
+import com.ondrejruttkay.architecturedemo.localization.Localization;
 import com.ondrejruttkay.architecturedemo.util.Utilities;
 import com.squareup.otto.Bus;
 
@@ -55,8 +56,8 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public Localization provideLocalization() {
-        return new Localization();
+    public ILocalization provideLocalization(Context context, Bus bus) {
+        return new Localization(context, bus);
     }
 
     @Singleton

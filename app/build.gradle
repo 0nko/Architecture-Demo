@@ -8,7 +8,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 24
 
         applicationId "com.ondrejruttkay.architecturedemo"

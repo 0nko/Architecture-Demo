@@ -10,12 +10,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_posts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scrollbars="vertical"
             app:bindPosts="@{viewModel.posts}" />
 
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            android:text="@string/load_button"
+            android:text="@{viewModel.localization.loadButtonLabel}"
             app:command="@{viewModel.loadCommand}" />
 
         <ProgressBar

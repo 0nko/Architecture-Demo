@@ -41,6 +41,7 @@ public class BindingHelpers {
                     .load(uri)
                     .fit()
                     .into(imageView);
+            imageView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -69,14 +70,11 @@ public class BindingHelpers {
 
     @BindingAdapter("bindPosts")
     public static void bindCarsRecyclerView(RecyclerView view, ObservableList<PostViewModel> posts) {
-        PostAdapter adapter;
-        if (view.getTag() == null) {
-            adapter = new PostAdapter(posts);
-            view.setTag(adapter);
-            view.setAdapter(adapter);
-            view.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        }
-        view.getAdapter().notifyDataSetChanged();
+        PostAdapter adapter = new PostAdapter(posts);
+        view.setTag(posts);
+        view.setAdapter(adapter);
+        view.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        adapter.notifyDataSetChanged();
     }
 
     @BindingConversion

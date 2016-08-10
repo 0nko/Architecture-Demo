@@ -4,9 +4,12 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import com.ondrejruttkay.architecturedemo.databinding.Command;
+import com.ondrejruttkay.architecturedemo.event.LanguageChanged;
+import com.ondrejruttkay.architecturedemo.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.model.Post;
 import com.ondrejruttkay.architecturedemo.navigation.INavigator;
 import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by Onko on 08/09/2016.
@@ -15,18 +18,28 @@ public class PostViewModel extends BaseViewModel {
 
     private Post post;
     private INavigator navigator;
+    private ILocalization localization;
+    private PostListViewModel postListViewModel;
 
     private Command openCommand;
     private Command editCommand;
+    private Command deleteCommand;
 
-    public PostViewModel(Bus bus, Post post, INavigator navigator) {
+    public PostViewModel(Bus bus,
+                         Post post,
+                         INavigator navigator,
+                         ILocalization localization,
+                         PostListViewModel postListViewModel) {
         super(bus);
 
         this.post = post;
         this.navigator = navigator;
+        this.localization = localization;
+        this.postListViewModel = postListViewModel;
 
         this.openCommand = new Command(this::openUrl);
         this.editCommand = new Command(this::editPost);
+        this.deleteCommand = new Command(this::deletePost);
     }
 
     private void openUrl() {
@@ -34,6 +47,10 @@ public class PostViewModel extends BaseViewModel {
     }
 
     private void editPost() {
+    }
+
+    private void deletePost() {
+        postListViewModel.deletePost(this);
     }
 
     public String getTitle() {
@@ -57,15 +74,28 @@ public class PostViewModel extends BaseViewModel {
         return post.getImageUrl() != null ? Uri.parse(post.getImageUrl()) : null;
     }
 
-    public void refresh() {
-        notifyChange();
-    }
-
     public Command getOpenCommand() {
         return openCommand;
     }
 
     public Command getEditCommand() {
         return editCommand;
+    }
+
+    public Command getDeleteCommand() {
+        return deleteCommand;
+    }
+
+    public ILocalization getLocalization() {
+        return localization;
+    }
+
+    public void refresh() {
+        notifyChange();
+    }
+
+    @Subscribe
+    public void onLanguageChanged(LanguageChanged event) {
+        notifyChange();
     }
 }

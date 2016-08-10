@@ -4,7 +4,9 @@
     <string name="action_view">View</string>
     <string name="action_dismiss">Dismiss</string>
     <string name="action_edit">Edit</string>
-    <string name="load_button">No posts. Load some…</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_load">No posts. Load some…</string>
+    <string name="change_language">Change language</string>
 
     <string name="icon_heart">&#xf004;</string>
     <string name="icon_message">&#xf27a;</string>

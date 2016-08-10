@@ -3,7 +3,6 @@ package com.ondrejruttkay.architecturedemo.di;
 import com.ondrejruttkay.architecturedemo.fragment.StateFragment;
 import com.ondrejruttkay.architecturedemo.navigation.INavigator;
 import com.ondrejruttkay.architecturedemo.navigation.Navigator;
-import com.ondrejruttkay.architecturedemo.util.Localization;
 
 import dagger.Module;
 import dagger.Provides;

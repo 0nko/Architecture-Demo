@@ -21,7 +21,8 @@
         <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
 
             <ImageView
                 android:id="@+id/image_featured"
@@ -43,6 +44,7 @@
                 android:shadowRadius="1.5"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white"
+                app:command="@{postViewModel.openCommand}"
                 android:text="@{postViewModel.title}" />
 
             <TextView
@@ -51,33 +53,47 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_post_title"
                 android:padding="@dimen/margin_medium"
+                app:command="@{postViewModel.openCommand}"
                 android:text="@{Html.fromHtml(postViewModel.summary).toString().trim()}" />
 
             <Button
-                android:id="@+id/button_edit_post"
+                android:id="@+id/button_delete_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/text_post_summary"
                 android:textAllCaps="true"
-                tools:text="@string/action_edit"
-                app:command="@{postViewModel.editCommand}"
-                android:text="@string/action_edit"
+                tools:text="@string/action_delete"
+                app:command="@{postViewModel.deleteCommand}"
+                android:text="@{postViewModel.localization.deleteButtonLabel}"
                 android:background="?android:attr/selectableItemBackground" />
 
             <Button
-                android:id="@+id/button_view_post"
+                android:id="@+id/button_edit_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-                android:layout_toStartOf="@id/button_edit_post"
+                android:layout_toStartOf="@id/button_delete_post"
                 android:layout_below="@id/text_post_summary"
                 android:textAllCaps="true"
-                tools:text="@string/action_view"
-                app:command="@{postViewModel.openCommand}"
-                android:text="@string/action_view"
+                tools:text="@string/action_edit"
+                app:command="@{postViewModel.editCommand}"
+                android:text="@{postViewModel.localization.editButtonLabel}"
                 android:background="?android:attr/selectableItemBackground" />
+
+            <!--<Button-->
+                <!--android:id="@+id/button_view_post"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/colorAccent"-->
+                <!--android:layout_toStartOf="@id/button_edit_post"-->
+                <!--android:layout_below="@id/text_post_summary"-->
+                <!--android:textAllCaps="true"-->
+                <!--tools:text="@string/action_view"-->
+                <!--app:command="@{postViewModel.openCommand}"-->
+                <!--android:text="@{postViewModel.localization.viewButtonLabel}"-->
+                <!--android:background="?android:attr/selectableItemBackground" />-->
 
             <TextView
                 android:id="@+id/icon_likes"
@@ -87,7 +103,7 @@
                 android:text="@string/icon_heart"
                 android:textColor="@android:color/holo_red_dark"
                 android:layout_alignParentStart="true"
-                android:layout_alignBaseline="@id/button_view_post"
+                android:layout_alignBaseline="@id/button_edit_post"
                 android:layout_marginStart="@dimen/margin_medium"
                 android:layout_marginEnd="@dimen/margin_tiny"
                 app:font="@{`icons`}" />
@@ -96,7 +112,7 @@
                 android:id="@+id/text_post_likes"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/icon_size"
-                android:layout_alignBaseline="@id/button_view_post"
+                android:layout_alignBaseline="@id/button_edit_post"
                 android:layout_toEndOf="@id/icon_likes"
                 android:text="@{postViewModel.likes}"
                 android:gravity="center_vertical"
@@ -110,7 +126,7 @@
                 android:text="@string/icon_message"
                 android:textColor="@color/colorPrimary"
                 android:layout_toEndOf="@id/text_post_likes"
-                android:layout_alignBaseline="@id/button_view_post"
+                android:layout_alignBaseline="@id/button_edit_post"
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_tiny"
                 app:font="@{`icons`}" />
@@ -119,7 +135,7 @@
                 android:id="@+id/text_post_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/icon_size"
-                android:layout_alignBaseline="@id/button_view_post"
+                android:layout_alignBaseline="@id/button_edit_post"
                 android:layout_toEndOf="@id/icon_comments"
                 android:text="@{postViewModel.comments}"
                 android:gravity="center_vertical"
@@ -129,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorLightGrey"
-                android:layout_above="@id/button_view_post" />
+                android:layout_above="@id/button_edit_post" />
 
         </RelativeLayout>
 

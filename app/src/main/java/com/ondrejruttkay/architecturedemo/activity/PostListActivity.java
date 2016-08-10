@@ -3,6 +3,9 @@ package com.ondrejruttkay.architecturedemo.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.ondrejruttkay.architecturedemo.R;
 import com.ondrejruttkay.architecturedemo.databinding.ActivityPostsBinding;
@@ -31,5 +34,23 @@ public class PostListActivity extends BaseActivity<PostListViewModel> {
     @Override
     protected void injectActivity() {
         getStateFragment().getInjection().inject(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_language:
+                viewModel.toggleLanguage();
+                break;
+        }
+        return true;
     }
 }
