@@ -52,10 +52,7 @@ public class PostListViewModel extends BaseViewModel {
         isBusy.set(true);
         loadCommand.setVisible(false);
 
-        repository.requestPosts()
-                .compose(RxUtils.applyDelay())
-                .compose(RxUtils.applySchedulers())
-                .subscribe(this::onPostsLoaded, throwable -> isBusy.set(false));
+        repository.requestPosts().subscribe(this::onPostsLoaded, throwable -> isBusy.set(false));
     }
 
     public void toggleLanguage() {

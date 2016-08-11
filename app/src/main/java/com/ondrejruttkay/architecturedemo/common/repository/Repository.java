@@ -1,5 +1,6 @@
 package com.ondrejruttkay.architecturedemo.common.repository;
 
+import com.ondrejruttkay.architecturedemo.common.util.RxUtils;
 import com.ondrejruttkay.architecturedemo.model.Post;
 import com.squareup.otto.Bus;
 
@@ -14,7 +15,7 @@ import rx.Observable;
  */
 public class Repository implements IRepository {
 
-    private HashMap<Integer, Post> posts;
+    protected HashMap<Integer, Post> posts;
 
     public Repository(Bus bus) {
         posts = new HashMap<>();
@@ -40,7 +41,9 @@ public class Repository implements IRepository {
 
     @Override
     public Observable<List<Post>> requestPosts() {
-        return Observable.just(new ArrayList<>(posts.values()));
+        return Observable.just(new ArrayList<>(posts.values()))
+                .compose(RxUtils.applyDelay())
+                .compose(RxUtils.applySchedulers());
     }
 
     @Override

@@ -15,8 +15,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -34,6 +32,17 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+
+        // Always show the result of every unit test, even if it passes.
+        unitTests.all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            }
+        }
     }
 }
 
@@ -72,11 +81,6 @@ dependencies {
     testCompile "junit:junit:$rootProject.junitVersion"
     testCompile "org.mockito:mockito-all:$rootProject.mockitoVersion"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.hamcrestVersion"
-
-    // Android Testing Support Library's runner and rules
-    androidTestCompile "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestCompile "com.android.support.test:rules:$rootProject.runnerVersion"
-    androidTestApt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 }
 
 /*
