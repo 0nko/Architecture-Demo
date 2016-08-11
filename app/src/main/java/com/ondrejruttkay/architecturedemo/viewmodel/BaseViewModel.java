@@ -17,6 +17,10 @@ public abstract class BaseViewModel extends Observable.OnPropertyChangedCallback
         this.bus = bus;
     }
 
+    protected Bus getBus() {
+        return bus;
+    }
+
     public void onCreate() {
         bus.register(this);
     }
@@ -31,6 +35,7 @@ public abstract class BaseViewModel extends Observable.OnPropertyChangedCallback
     public void onPause() {
     }
 
+    //region Observable
     @Override
     public synchronized void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
         if (callbacks == null) {
@@ -66,7 +71,5 @@ public abstract class BaseViewModel extends Observable.OnPropertyChangedCallback
         }
     }
 
-    protected Bus getBus() {
-        return bus;
-    }
+    //endregion
 }

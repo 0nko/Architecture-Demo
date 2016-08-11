@@ -3,6 +3,7 @@ package com.ondrejruttkay.architecturedemo.viewmodel;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
+import android.support.annotation.NonNull;
 
 import com.ondrejruttkay.architecturedemo.common.databinding.Command;
 import com.ondrejruttkay.architecturedemo.common.di.PerActivity;
@@ -57,6 +58,19 @@ public class PostListViewModel extends BaseViewModel {
                 .subscribe(this::onPostsLoaded, throwable -> isBusy.set(false));
     }
 
+    public void toggleLanguage() {
+        localization.toggleLanguage();
+    }
+
+    public void deletePost(@NonNull PostViewModel post) {
+        posts.remove(post);
+        post.onDestroy();
+
+        loadCommand.setVisible(posts.size() == 0);
+    }
+
+    //region Getters
+
     public ObservableList<PostViewModel> getPosts() {
         return posts;
     }
@@ -73,16 +87,9 @@ public class PostListViewModel extends BaseViewModel {
         return localization;
     }
 
-    public void toggleLanguage() {
-        localization.toggleLanguage();
-    }
+    //endregion
 
-    public void deletePost(PostViewModel post) {
-        posts.remove(post);
-        post.onDestroy();
-
-        loadCommand.setVisible(posts.size() == 0);
-    }
+    //region Events
 
     private void onPostsLoaded(List<Post> newPosts) {
         posts.clear();
@@ -108,4 +115,6 @@ public class PostListViewModel extends BaseViewModel {
             post.onDestroy();
         }
     }
+
+    //endregion
 }

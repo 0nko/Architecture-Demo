@@ -56,6 +56,8 @@ public class PostViewModel extends BaseViewModel {
         postListViewModel.deletePost(this);
     }
 
+    //region Getters
+
     public String getTitle() {
         return post.getTitle();
     }
@@ -93,19 +95,19 @@ public class PostViewModel extends BaseViewModel {
         return localization;
     }
 
-    public void refresh() {
-        notifyChange();
-    }
+    //endregion
+
+    //region Events
 
     @Subscribe
     public void onLanguageChanged(LanguageChanged event) {
-        refresh();
+        notifyChange();
     }
 
     @Subscribe
     public void onPostChanged(PostChanged event) {
         if (event.getPostId() == post.getId()) {
-            refresh();
+            notifyChange();
         }
     }
 
@@ -113,4 +115,6 @@ public class PostViewModel extends BaseViewModel {
     public void onDestroy() {
         super.onDestroy();
     }
+
+    //endregion
 }

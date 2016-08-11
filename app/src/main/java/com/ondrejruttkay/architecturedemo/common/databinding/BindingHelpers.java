@@ -29,6 +29,7 @@ public class BindingHelpers {
             Picasso.with(imageView.getContext())
                     .load(uri)
                     .fit()
+                    .centerCrop()
                     .into(imageView);
             imageView.setVisibility(View.VISIBLE);
         }
@@ -51,7 +52,6 @@ public class BindingHelpers {
     @BindingAdapter("bindPosts")
     public static void bindPosts(RecyclerView view, ObservableList<PostViewModel> posts) {
         PostAdapter adapter = new PostAdapter(posts);
-        view.setTag(posts);
         view.setAdapter(adapter);
         view.setLayoutManager(new LinearLayoutManager(view.getContext()));
         adapter.notifyDataSetChanged();

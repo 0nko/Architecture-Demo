@@ -63,6 +63,8 @@ public class EditPostViewModel extends BaseViewModel {
         navigator.close();
     }
 
+    //region Getters
+
     public ObservableField<String> getTitle() {
         return title;
     }
@@ -79,8 +81,14 @@ public class EditPostViewModel extends BaseViewModel {
         return localization;
     }
 
+    //endregion
+
+    //region Events
+
     @Subscribe
     public void onLanguageChanged(LanguageChanged event) {
         notifyChange();
     }
+
+    //endregion
 }

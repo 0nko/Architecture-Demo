@@ -44,12 +44,10 @@ dependencies {
     compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.supportLibraryVersion"
 
     // Rx
     compile "io.reactivex:rxjava:$rootProject.rxJavaVersion"
     compile "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
-    compile "com.jakewharton.rxbinding:rxbinding:$rootProject.rxBindingVersion"
 
     // Utils
     compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
