@@ -2,6 +2,8 @@
 
 A demo for an Android app architecture using MVVM, data binding, RxJava, dependency injection &amp; more.
 
+An [APK build](ArchitectureDemo.apk) for convenience.
+
 ## Architecture
 
 There are two screens - the list of posts and a post editor. The main building block is the MVVM pattern, so each screen has its own View Model and View classes (Activity, Fragment, Adapter & the layout XML). There is just one model - the Post. The Repository, which provides a list of Posts, can also be considered to be a part of the Model layer.
