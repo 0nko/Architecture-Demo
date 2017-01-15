@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.ondrejruttkay.architecturedemo.BR;
 import com.ondrejruttkay.architecturedemo.R;
 import com.ondrejruttkay.architecturedemo.databinding.ItemPostBinding;
-import com.ondrejruttkay.architecturedemo.viewmodel.PostViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostComponentViewModel;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BindingHolder> {
 
-    private List<PostViewModel> posts;
+    private List<PostComponentViewModel> posts;
 
-    public PostAdapter(@NonNull List<PostViewModel> posts) {
+    public PostAdapter(@NonNull List<PostComponentViewModel> posts) {
         this.posts = posts;
     }
 
@@ -34,7 +34,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BindingHolder>
 
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
-        final PostViewModel post = posts.get(position);
+        final PostComponentViewModel post = posts.get(position);
         holder.binding.setVariable(BR.postViewModel, post);
         holder.binding.executePendingBindings();
     }

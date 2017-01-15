@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.ondrejruttkay.architecturedemo.DemoApp;
+import com.ondrejruttkay.architecturedemo.common.di.ActivityComponent;
 import com.ondrejruttkay.architecturedemo.common.di.ActivityModule;
 import com.ondrejruttkay.architecturedemo.view.fragment.StateFragment;
 import com.ondrejruttkay.architecturedemo.common.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.viewmodel.BaseViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.ScreenViewModel;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -18,7 +20,7 @@ import javax.inject.Inject;
 /**
  * Created by Ondrej Ruttkay on 08/09/2016.
  */
-public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<T extends ScreenViewModel> extends AppCompatActivity {
 
     private static final String TAG_STATE_FRAGMENT = "STATE_FRAGMENT";
 
@@ -113,6 +115,10 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
     public StateFragment<T> getStateFragment() {
         return stateFragment;
+    }
+
+    public ActivityComponent getInjection() {
+        return stateFragment.getInjection();
     }
 
     public boolean isCreated() {

@@ -1,6 +1,5 @@
 package com.ondrejruttkay.architecturedemo.viewmodel;
 
-import com.ondrejruttkay.architecturedemo.common.event.LanguageChanged;
 import com.ondrejruttkay.architecturedemo.common.localization.FakeLocalization;
 import com.ondrejruttkay.architecturedemo.common.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.common.navigation.INavigator;
@@ -32,19 +31,18 @@ public class PostListViewModelTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    private PostListViewModel setupPostListViewModel() {
+    private PostListComponentViewModel setupPostListViewModel() {
         Bus bus = new Bus();
         IRepository repository = new FakeRepository(bus);
         ILocalization localization = new FakeLocalization(bus);
 
-        PostListViewModel viewModel = new PostListViewModel(bus, repository, navigator, localization);
-        viewModel.onCreate();
+        PostListComponentViewModel viewModel = new PostListComponentViewModel(bus, repository, navigator, localization);
         return Mockito.spy(viewModel);
     }
 
     @Test
     public void postLoadingTest() {
-        PostListViewModel viewModel = setupPostListViewModel();
+        PostListComponentViewModel viewModel = setupPostListViewModel();
         Assert.assertTrue(viewModel.getLoadCommand().isVisible().get());
 
         viewModel.getLoadCommand().execute();
@@ -56,11 +54,11 @@ public class PostListViewModelTest {
 
     @Test
     public void deletePostTest() {
-        PostListViewModel viewModel = setupPostListViewModel();
+        PostListComponentViewModel viewModel = setupPostListViewModel();
 
         viewModel.getLoadCommand().execute();
 
-        PostViewModel post = viewModel.getPosts().get(0);
+        PostComponentViewModel post = viewModel.getPosts().get(0);
         viewModel.deletePost(post);
 
         Assert.assertEquals(viewModel.getPosts().size(), 2);
@@ -69,7 +67,7 @@ public class PostListViewModelTest {
 
     @Test
     public void changeLanguageTest() {
-        PostListViewModel viewModel = setupPostListViewModel();
+        PostListComponentViewModel viewModel = setupPostListViewModel();
 
         Assert.assertEquals(viewModel.getLocalization().getLoadButtonLabel(), FakeLocalization.ENGLISH);
 

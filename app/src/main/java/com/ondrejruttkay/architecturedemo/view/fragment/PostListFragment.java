@@ -9,32 +9,29 @@ import android.view.ViewGroup;
 
 import com.ondrejruttkay.architecturedemo.R;
 import com.ondrejruttkay.architecturedemo.databinding.FragmentPostsBinding;
-import com.ondrejruttkay.architecturedemo.view.activity.BaseActivity;
-import com.ondrejruttkay.architecturedemo.viewmodel.PostListViewModel;
-
-import javax.inject.Inject;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostListComponentViewModel;
 
 /**
  * Created by Ondrej Ruttkay on 08/09/2016.
  */
-public class PostListFragment extends BaseFragment {
-
-    @Inject
-    PostListViewModel viewModel;
+public class PostListFragment extends BaseFragment<PostListComponentViewModel> {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        ((BaseActivity)getActivity()).getStateFragment().getInjection().inject(this);
 
         FragmentPostsBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_posts,
                 container,
                 false);
 
-        binding.setViewModel(viewModel);
+        binding.setViewModel(getViewModel());
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void injectFragment() {
+        getInjection().inject(this);
     }
 }

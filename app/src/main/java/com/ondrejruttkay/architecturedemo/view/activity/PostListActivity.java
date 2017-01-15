@@ -9,12 +9,12 @@ import android.view.MenuItem;
 
 import com.ondrejruttkay.architecturedemo.R;
 import com.ondrejruttkay.architecturedemo.databinding.ActivityPostsBinding;
-import com.ondrejruttkay.architecturedemo.viewmodel.PostListViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostListScreenViewModel;
 
 /**
  * The main activity with a toolbar.
  */
-public class PostListActivity extends BaseActivity<PostListViewModel> {
+public class PostListActivity extends BaseActivity<PostListScreenViewModel> {
 
     ActivityPostsBinding binding;
 
@@ -28,12 +28,12 @@ public class PostListActivity extends BaseActivity<PostListViewModel> {
 
     @Override
     public void injectStateFragment() {
-        getStateFragment().getInjection().injectPostListState(getStateFragment());
+        getInjection().injectPostListScreenState(getStateFragment());
     }
 
     @Override
     protected void injectActivity() {
-        getStateFragment().getInjection().inject(this);
+        getInjection().inject(this);
     }
 
     @Override

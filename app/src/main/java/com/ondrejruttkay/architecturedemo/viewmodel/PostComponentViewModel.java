@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import com.ondrejruttkay.architecturedemo.common.databinding.Command;
+import com.ondrejruttkay.architecturedemo.common.di.PerActivity;
 import com.ondrejruttkay.architecturedemo.common.event.LanguageChanged;
 import com.ondrejruttkay.architecturedemo.common.event.PostChanged;
 import com.ondrejruttkay.architecturedemo.common.localization.ILocalization;
@@ -12,25 +13,27 @@ import com.ondrejruttkay.architecturedemo.common.navigation.INavigator;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import javax.inject.Inject;
+
 /**
  * Created by Onko on 08/09/2016.
  */
-public class PostViewModel extends BaseViewModel {
+public class PostComponentViewModel extends ComponentViewModel {
 
     private Post post;
     private INavigator navigator;
     private ILocalization localization;
-    private PostListViewModel postListViewModel;
+    private PostListComponentViewModel postListViewModel;
 
     private Command openCommand;
     private Command editCommand;
     private Command deleteCommand;
 
-    public PostViewModel(Bus bus,
-                         Post post,
-                         INavigator navigator,
-                         ILocalization localization,
-                         PostListViewModel postListViewModel) {
+    public PostComponentViewModel(Bus bus,
+                                  Post post,
+                                  INavigator navigator,
+                                  ILocalization localization,
+                                  PostListComponentViewModel postListViewModel) {
         super(bus);
 
         this.post = post;
@@ -109,11 +112,6 @@ public class PostViewModel extends BaseViewModel {
         if (event.getPostId() == post.getId()) {
             notifyChange();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     //endregion

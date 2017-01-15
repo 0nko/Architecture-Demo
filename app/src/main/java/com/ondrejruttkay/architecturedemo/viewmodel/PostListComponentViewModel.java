@@ -12,7 +12,6 @@ import com.ondrejruttkay.architecturedemo.common.localization.ILocalization;
 import com.ondrejruttkay.architecturedemo.model.Post;
 import com.ondrejruttkay.architecturedemo.common.navigation.INavigator;
 import com.ondrejruttkay.architecturedemo.common.repository.IRepository;
-import com.ondrejruttkay.architecturedemo.common.util.RxUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -24,18 +23,18 @@ import javax.inject.Inject;
  * Created by Onko on 08/09/2016.
  */
 @PerActivity
-public class PostListViewModel extends BaseViewModel {
+public class PostListComponentViewModel extends ComponentViewModel {
 
     private IRepository repository;
     private INavigator navigator;
     private ILocalization localization;
 
-    private ObservableList<PostViewModel> posts;
+    private ObservableList<PostComponentViewModel> posts;
     private ObservableBoolean isBusy;
     private Command loadCommand;
 
     @Inject
-    public PostListViewModel(Bus bus, IRepository repository, INavigator navigator, ILocalization localization) {
+    public PostListComponentViewModel(Bus bus, IRepository repository, INavigator navigator, ILocalization localization) {
         super(bus);
 
         this.repository = repository;
@@ -59,7 +58,7 @@ public class PostListViewModel extends BaseViewModel {
         localization.toggleLanguage();
     }
 
-    public void deletePost(@NonNull PostViewModel post) {
+    public void deletePost(@NonNull PostComponentViewModel post) {
         posts.remove(post);
         post.onDestroy();
 
@@ -68,7 +67,7 @@ public class PostListViewModel extends BaseViewModel {
 
     //region Getters
 
-    public ObservableList<PostViewModel> getPosts() {
+    public ObservableList<PostComponentViewModel> getPosts() {
         return posts;
     }
 
@@ -91,8 +90,7 @@ public class PostListViewModel extends BaseViewModel {
     private void onPostsLoaded(List<Post> newPosts) {
         posts.clear();
         for (Post post : newPosts) {
-            PostViewModel newPost = new PostViewModel(getBus(), post, navigator, localization, this);
-            newPost.onCreate();
+            PostComponentViewModel newPost = new PostComponentViewModel(getBus(), post, navigator, localization, this);
             posts.add(newPost);
         }
         isBusy.set(false);
@@ -108,7 +106,7 @@ public class PostListViewModel extends BaseViewModel {
     public void onDestroy() {
         super.onDestroy();
 
-        for (PostViewModel post : posts) {
+        for (PostComponentViewModel post : posts) {
             post.onDestroy();
         }
     }

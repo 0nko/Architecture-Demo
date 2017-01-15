@@ -6,8 +6,10 @@ import com.ondrejruttkay.architecturedemo.view.activity.PostListActivity;
 import com.ondrejruttkay.architecturedemo.view.fragment.EditPostFragment;
 import com.ondrejruttkay.architecturedemo.view.fragment.PostListFragment;
 import com.ondrejruttkay.architecturedemo.view.fragment.StateFragment;
-import com.ondrejruttkay.architecturedemo.viewmodel.EditPostViewModel;
-import com.ondrejruttkay.architecturedemo.viewmodel.PostListViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.EditPostComponentViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostListScreenViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostListComponentViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.ScreenViewModel;
 
 import dagger.Subcomponent;
 
@@ -19,8 +21,8 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
 
     // State fragments
-    void injectPostListState(StateFragment<PostListViewModel> fragment);
-    void injectEditPostState(StateFragment<EditPostViewModel> fragment);
+    void injectScreenState(StateFragment<ScreenViewModel> stateFragment);
+    void injectPostListScreenState(StateFragment<PostListScreenViewModel> stateFragment);
 
     // Activities
     void inject(PostListActivity activity);

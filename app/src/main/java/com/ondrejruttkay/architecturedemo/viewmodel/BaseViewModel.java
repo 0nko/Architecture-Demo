@@ -2,6 +2,7 @@ package com.ondrejruttkay.architecturedemo.viewmodel;
 
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
+import android.support.annotation.CallSuper;
 
 import com.squareup.otto.Bus;
 
@@ -15,24 +16,21 @@ public abstract class BaseViewModel extends Observable.OnPropertyChangedCallback
 
     public BaseViewModel(Bus bus) {
         this.bus = bus;
+
+        bus.register(this);
     }
 
     protected Bus getBus() {
         return bus;
     }
 
-    public void onCreate() {
-        bus.register(this);
-    }
+    public void onDisplayed() {}
 
+    public void onHidden() {}
+
+    @CallSuper
     public void onDestroy() {
         bus.unregister(this);
-    }
-
-    public void onResume() {
-    }
-
-    public void onPause() {
     }
 
     //region Observable

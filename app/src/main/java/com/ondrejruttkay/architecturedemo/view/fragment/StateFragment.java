@@ -7,25 +7,32 @@ import android.support.v4.app.Fragment;
 import com.ondrejruttkay.architecturedemo.DemoApp;
 import com.ondrejruttkay.architecturedemo.common.di.ActivityComponent;
 import com.ondrejruttkay.architecturedemo.viewmodel.BaseViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.ComponentViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.ScreenViewModel;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 /**
  * Created by Ondrej Ruttkay on 08/09/2016.
  */
-public class StateFragment<T extends BaseViewModel> extends Fragment {
+public class StateFragment<T extends ScreenViewModel> extends Fragment {
 
     private ActivityComponent activityComponent;
 
     @Inject
     T viewModel;
 
+    List<WeakReference<ComponentViewModel>> childViewModels = new ArrayList<>();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (activityComponent != null) {
             setRetainInstance(true);
-            viewModel.onCreate();
         }
     }
 
@@ -37,16 +44,20 @@ public class StateFragment<T extends BaseViewModel> extends Fragment {
         return activityComponent;
     }
 
+    public void registerComponent(ComponentViewModel componentViewModel) {
+        childViewModels.add(new WeakReference<ComponentViewModel>(componentViewModel));
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.onResume();
+        viewModel.onDisplayed();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        viewModel.onPause();
+        viewModel.onHidden();
     }
 
     @Override
@@ -54,6 +65,12 @@ public class StateFragment<T extends BaseViewModel> extends Fragment {
         super.onDestroy();
 
         viewModel.onDestroy();
+
+        for (WeakReference<ComponentViewModel> vm : childViewModels) {
+            if (vm.get() != null) {
+                vm.get().onDestroy();
+            }
+        }
 
         DemoApp.get(getContext()).getLeakCanary().watch(activityComponent);
         DemoApp.get(getContext()).getLeakCanary().watch(this);

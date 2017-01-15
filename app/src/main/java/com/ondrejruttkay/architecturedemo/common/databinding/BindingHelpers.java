@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.ondrejruttkay.architecturedemo.common.util.FontCache;
 import com.ondrejruttkay.architecturedemo.view.adapter.PostAdapter;
-import com.ondrejruttkay.architecturedemo.viewmodel.PostViewModel;
+import com.ondrejruttkay.architecturedemo.viewmodel.PostComponentViewModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -50,7 +50,7 @@ public class BindingHelpers {
     }
 
     @BindingAdapter("bindPosts")
-    public static void bindPosts(RecyclerView view, ObservableList<PostViewModel> posts) {
+    public static void bindPosts(RecyclerView view, ObservableList<PostComponentViewModel> posts) {
         PostAdapter adapter = new PostAdapter(posts);
         view.setAdapter(adapter);
         view.setLayoutManager(new LinearLayoutManager(view.getContext()));

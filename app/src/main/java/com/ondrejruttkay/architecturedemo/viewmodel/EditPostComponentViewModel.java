@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * Created by Onko on 08/09/2016.
  */
 @PerActivity
-public class EditPostViewModel extends BaseViewModel {
+public class EditPostComponentViewModel extends ComponentViewModel {
 
     private Post post;
     private INavigator navigator;
@@ -31,10 +31,10 @@ public class EditPostViewModel extends BaseViewModel {
     private ObservableField<String> summary;
 
     @Inject
-    public EditPostViewModel(Bus bus,
-                             INavigator navigator,
-                             IRepository repository,
-                             ILocalization localization) {
+    public EditPostComponentViewModel(Bus bus,
+                                      INavigator navigator,
+                                      IRepository repository,
+                                      ILocalization localization) {
         super(bus);
 
         this.navigator = navigator;

@@ -7,7 +7,7 @@
         <import type="android.text.Html" />
         <variable
             name="postViewModel"
-            type="com.ondrejruttkay.architecturedemo.viewmodel.PostViewModel" />
+            type="com.ondrejruttkay.architecturedemo.viewmodel.PostComponentViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
